@@ -1,0 +1,2 @@
+C:\Users\admin\source\repos\OfflineScurvePlan\Debug\OfflineScurvePlan.exe
+C:\Users\admin\source\repos\OfflineScurvePlan\Debug\OfflineScurvePlan.pdb
