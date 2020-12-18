@@ -4,70 +4,8 @@
 #include <iomanip>
 #include <fstream>
 
-//¶Ô³ÆSÐÍ¹æ»®
-class STypeMotion
-{
-public:
-    STypeMotion();
-    bool Plan(double q0, double q1, double v0, double v1, int& N);
-    bool Move(int i, double& qi);
-    void SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax);
-    void SetCycle(double cycle);
-    //ÏÔÊ¾¹Ø¼üÊ±¼ä½Úµã
-    void ShowKeyTime();
-
-private:
-    //SÐÍ¹æ»®×îµÍÒªÇó
-    bool ParaMinDisRequirement();
-
-    //Tv¶Î²»´æÔÚÊ±µÄÊ±¼ä²ÎÊý¼ÆËã
-    bool TvNotExistTimeParaCal(double gama);
-
-    //Tv¶Î´æÔÚÊ±µÄÊ±¼ä²ÎÊý¼ÆËã
-    bool TvExistTimeParaCal();
-
-    //Ôö¼Ó¶ÔÎ»ÒÆ¼õÉÙÇé¿öµÄ´¦Àí
-    void Convert2OppositeCase();
-
-    //¼ÆËãÊµ¼ÊÔËÐÐ²ÎÊý
-    void CalRealMotionPara();
-
-    //»ñÈ¡tiµÄÊä³öÖµQi
-    bool GetQi(double ti, double& qi);
-
-    //ÏµÍ³ÄÚÖÃ²ÎÊý
-    double m_vmin = 0, m_vmax = 0;
-    double m_amin = 0, m_amax = 0;
-    double m_jmin = 0, m_jmax = 0;
-    double m_cycle;
-
-    //ÓÃ»§²ÎÊý
-    double m_q0;
-    double m_q1;
-    double m_v0;
-    double m_v1;
-
-    //¸ù¾ÝÓÃ»§²ÎÊýµ÷ÕûµÄÏµÍ³²ÎÊý
-    double m_alima = 0;//real acc
-    double m_alimd = 0;//real dec
-    double m_vlima = 0;
-    double m_vlimd = 0;
-    double m_vlim = 0;//real_vlim
-
-    //¹æ»®µÄÊ±¼ä²ÎÊý
-    double m_Tj1 = 0;
-    double m_Tj2 = 0;
-    double m_Tv = 0;
-    double m_Ta = 0;
-    double m_Td = 0;
-    double m_T = 0;
-
-    //ÊÇ·ñÎªq0>q1
-    int m_sign = 1;
-    int m_N = 0;
-    int m_isError = 0;
-
-};
+//å¯¹ç§°Såž‹è§„åˆ’
+#include "OfflineScurvePlan.h"
 
 STypeMotion::STypeMotion()
 {
@@ -92,13 +30,13 @@ bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
     this->m_v0 = v0;
     this->m_v1 = v1;
 
-    //¿¼ÂÇÎ»ÒÆ¼õÉÙÇé¿ö£¬²ÎÊý×ª»»
+    //è€ƒè™‘ä½ç§»å‡å°‘æƒ…å†µï¼Œå‚æ•°è½¬æ¢
     Convert2OppositeCase();
 
-    //µ±Ç°²ÎÊýÂú×ã×îÐ¡Î»ÒÆÒªÇó
+    //å½“å‰å‚æ•°æ»¡è¶³æœ€å°ä½ç§»è¦æ±‚
     if (ParaMinDisRequirement())
     {
-        //¼ÙÉèTv¶Î´æÔÚ
+        //å‡è®¾Tvæ®µå­˜åœ¨
         bool TvExist = TvExistTimeParaCal();
         if (TvExist)
         {
@@ -107,7 +45,7 @@ bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
             return true;
         }
         double gama = 1;
-        //Tv¶Î²»´æÔÚ
+        //Tvæ®µä¸å­˜åœ¨
         double k = 1;
         while (gama > 0)
         {
@@ -124,11 +62,11 @@ bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
             }
         }
     }
-    //µ±Ç°²ÎÊý²»Âú×ã×îÐ¡Î»ÒÆÒªÇó
+    //å½“å‰å‚æ•°ä¸æ»¡è¶³æœ€å°ä½ç§»è¦æ±‚
     else
     {
         double gama = 1;
-        //Tv¶Î²»´æÔÚ
+        //Tvæ®µä¸å­˜åœ¨
         double k = 1;
         while (gama > 0)
         {
@@ -152,10 +90,10 @@ bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
 
 }
 
-//Tv¶Î´æÔÚÊ±µÄÊ±¼ä²ÎÊý¼ÆËã
+//Tvæ®µå­˜åœ¨æ—¶çš„æ—¶é—´å‚æ•°è®¡ç®—
 bool STypeMotion::TvExistTimeParaCal()
 {
-    //¼ÙÉèTv´æÔÚ£¬Èç¹ûTv²»Ð¡ÓÚ0£¬¼ÙÉè³ÉÁ¢£»·´Ö®£¬¼ÙÉè³É¹¦
+    //å‡è®¾Två­˜åœ¨ï¼Œå¦‚æžœTvä¸å°äºŽ0ï¼Œå‡è®¾æˆç«‹ï¼›åä¹‹ï¼Œå‡è®¾æˆåŠŸ
     if ((m_vmax - m_v0) * m_jmax < m_amax * m_amax)
     {
         m_Tj1 = sqrt((m_vmax - m_v0) / m_jmax);
@@ -185,7 +123,7 @@ bool STypeMotion::TvExistTimeParaCal()
     return false;
 }
 
-//Tv¶Î²»´æÔÚÊ±µÄÊ±¼ä²ÎÊý¼ÆËã
+//Tvæ®µä¸å­˜åœ¨æ—¶çš„æ—¶é—´å‚æ•°è®¡ç®—
 bool STypeMotion::TvNotExistTimeParaCal(double gama)
 {
     m_amax = gama * m_amax;
@@ -307,7 +245,7 @@ void STypeMotion::CalRealMotionPara()
     else
         m_vlim = fabs(m_vlimd);
 
-    //×ÜÊ±¼äµÄ¼ÆËã
+    //æ€»æ—¶é—´çš„è®¡ç®—
     m_T = m_Ta + m_Td + m_Tv;
 
     m_N = static_cast<int>(m_T / m_cycle + 1);
@@ -344,7 +282,7 @@ bool STypeMotion::GetQi(double ti, double& qi)
     }
     else if ((ti >= m_T - m_Td || ti >= m_Ta + m_Tv) && ti < m_T - m_Td + m_Tj2)//DP1
     {
-        //¡°»òÓï¾ä¡±±ÜÃâ¾«¶ÈÒýÆðµÄ³¬Çø¼äÎóÅÐ
+        //â€œæˆ–è¯­å¥â€é¿å…ç²¾åº¦å¼•èµ·çš„è¶…åŒºé—´è¯¯åˆ¤
         qi = m_q1 - (m_vlim + m_v1) * (m_Td / 2) + m_vlim * (ti - m_T + m_Td) \
             - m_jmax * pow(ti - m_T + m_Td, 3) / 6;
     }
@@ -396,7 +334,7 @@ int main()
  // q0 = 0, q1 = 10, v0 = 1, v1 = 0, vmax = 5, amax = 10, jmax = 30;
     //case 2 No MP S vlim<vmax 
  //q0 = 0, q1 = 10, v0 = 1, v1 = 0, vmax = 10, amax = 10, jmax = 30;
-    //case 3 No MP S£¬vlim<vmax, alim<amax
+    //case 3 No MP Sï¼Œvlim<vmax, alim<amax
  //q0 = 0, q1 = 10, v0 = 7, v1 = 0, vmax = 10, amax = 10, jmax = 30;
     //case 4 No AP MP, vlim<vmax
     q0 = 0, q1 = 10, v0 = 7.5, v1 = 0, vmax = 10, amax = 10, jmax = 30;

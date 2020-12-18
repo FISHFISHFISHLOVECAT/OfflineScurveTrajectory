@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build",
+  "command": "/usr/bin/g++-5   -g -o CMakeFiles/Demo.dir/OfflineScurvePlan.cpp.o -c \"/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/OfflineScurvePlan.cpp\"",
+  "file": "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/OfflineScurvePlan.cpp"
+}
+]
