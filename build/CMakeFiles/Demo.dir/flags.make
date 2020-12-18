@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++-5
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I"/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/./inc"
 
-CXX_FLAGS = -g
+CXX_FLAGS = -g -std=gnu++11
 

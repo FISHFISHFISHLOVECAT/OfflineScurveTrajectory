@@ -1,7 +1,12 @@
 [
 {
   "directory": "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build",
-  "command": "/usr/bin/g++-5   -g -o CMakeFiles/Demo.dir/OfflineScurvePlan.cpp.o -c \"/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/OfflineScurvePlan.cpp\"",
-  "file": "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/OfflineScurvePlan.cpp"
+  "command": "/usr/bin/g++-5  -I\"/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/./inc\" -g -std=gnu++11 -o CMakeFiles/Demo.dir/test/main.cpp.o -c \"/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/test/main.cpp\"",
+  "file": "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/test/main.cpp"
+},
+{
+  "directory": "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build",
+  "command": "/usr/bin/g++-5  -I\"/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/./inc\" -g -std=gnu++11 -o CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o -c \"/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/src/offline_scurve_plan.cpp\"",
+  "file": "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/src/offline_scurve_plan.cpp"
 }
 ]

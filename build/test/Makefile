@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build//CMakeFiles/progress.marks"
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/test//CMakeFiles/progress.marks"
+	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,85 +116,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named Demo
-
-# Build rule for target.
-Demo: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Demo
-.PHONY : Demo
-
-# fast build rule for target.
-Demo/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/build
-.PHONY : Demo/fast
-
-src/offline_scurve_plan.o: src/offline_scurve_plan.cpp.o
-
-.PHONY : src/offline_scurve_plan.o
-
-# target to build an object file
-src/offline_scurve_plan.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o
-.PHONY : src/offline_scurve_plan.cpp.o
-
-src/offline_scurve_plan.i: src/offline_scurve_plan.cpp.i
-
-.PHONY : src/offline_scurve_plan.i
-
-# target to preprocess a source file
-src/offline_scurve_plan.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.i
-.PHONY : src/offline_scurve_plan.cpp.i
-
-src/offline_scurve_plan.s: src/offline_scurve_plan.cpp.s
-
-.PHONY : src/offline_scurve_plan.s
-
-# target to generate assembly for a file
-src/offline_scurve_plan.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.s
-.PHONY : src/offline_scurve_plan.cpp.s
-
-test/main.o: test/main.cpp.o
-
-.PHONY : test/main.o
-
-# target to build an object file
-test/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/test/main.cpp.o
-.PHONY : test/main.cpp.o
-
-test/main.i: test/main.cpp.i
-
-.PHONY : test/main.i
-
-# target to preprocess a source file
-test/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/test/main.cpp.i
-.PHONY : test/main.cpp.i
-
-test/main.s: test/main.cpp.s
-
-.PHONY : test/main.s
-
-# target to generate assembly for a file
-test/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/test/main.cpp.s
-.PHONY : test/main.cpp.s
 
 # Help Target
 help:
@@ -204,13 +137,6 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Demo"
-	@echo "... src/offline_scurve_plan.o"
-	@echo "... src/offline_scurve_plan.i"
-	@echo "... src/offline_scurve_plan.s"
-	@echo "... test/main.o"
-	@echo "... test/main.i"
-	@echo "... test/main.s"
 .PHONY : help
 
 
@@ -222,6 +148,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

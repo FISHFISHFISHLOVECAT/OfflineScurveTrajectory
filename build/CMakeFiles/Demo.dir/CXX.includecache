@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../inc/offline_scurve_plan.h
+
+/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/src/offline_scurve_plan.cc
+iostream
+-
+vector
+-
+algorithm
+-
+iomanip
+-
+fstream
+-
+offline_scurve_plan.h
+/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/src/offline_scurve_plan.h
+
+/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/test/main.cpp
+iostream
+-
+iomanip
+-
+fstream
+-
+offline_scurve_plan.h
+/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/test/offline_scurve_plan.h
+
