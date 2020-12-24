@@ -58,19 +58,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/cmake-3.19.1-Linux-x86_64/bin/cmake
+CMAKE_COMMAND = /usr/local/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/cmake-3.19.1-Linux-x86_64/bin/cmake -E rm -f
+RM = /usr/local/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory"
+CMAKE_SOURCE_DIR = /home/junwu/SnapMotion/OfflineScurveTrajectory
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build"
+CMAKE_BINARY_DIR = /home/junwu/SnapMotion/OfflineScurveTrajectory/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,7 +78,7 @@ CMAKE_BINARY_DIR = "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/cmake-3.19.1-Linux-x86_64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -89,7 +89,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/cmake-3.19.1-Linux-x86_64/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/junwu/SnapMotion/OfflineScurveTrajectory/build/CMakeFiles /home/junwu/SnapMotion/OfflineScurveTrajectory/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/junwu/SnapMotion/OfflineScurveTrajectory/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,59 +142,59 @@ Demo/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/build
 .PHONY : Demo/fast
 
-src/offline_scurve_plan.o: src/offline_scurve_plan.cpp.o
+src/OfflineScurvePlan.o: src/OfflineScurvePlan.cpp.o
 
-.PHONY : src/offline_scurve_plan.o
-
-# target to build an object file
-src/offline_scurve_plan.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o
-.PHONY : src/offline_scurve_plan.cpp.o
-
-src/offline_scurve_plan.i: src/offline_scurve_plan.cpp.i
-
-.PHONY : src/offline_scurve_plan.i
-
-# target to preprocess a source file
-src/offline_scurve_plan.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.i
-.PHONY : src/offline_scurve_plan.cpp.i
-
-src/offline_scurve_plan.s: src/offline_scurve_plan.cpp.s
-
-.PHONY : src/offline_scurve_plan.s
-
-# target to generate assembly for a file
-src/offline_scurve_plan.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.s
-.PHONY : src/offline_scurve_plan.cpp.s
-
-test/main.o: test/main.cpp.o
-
-.PHONY : test/main.o
+.PHONY : src/OfflineScurvePlan.o
 
 # target to build an object file
-test/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/test/main.cpp.o
-.PHONY : test/main.cpp.o
+src/OfflineScurvePlan.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o
+.PHONY : src/OfflineScurvePlan.cpp.o
 
-test/main.i: test/main.cpp.i
+src/OfflineScurvePlan.i: src/OfflineScurvePlan.cpp.i
 
-.PHONY : test/main.i
+.PHONY : src/OfflineScurvePlan.i
 
 # target to preprocess a source file
-test/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/test/main.cpp.i
-.PHONY : test/main.cpp.i
+src/OfflineScurvePlan.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.i
+.PHONY : src/OfflineScurvePlan.cpp.i
 
-test/main.s: test/main.cpp.s
+src/OfflineScurvePlan.s: src/OfflineScurvePlan.cpp.s
 
-.PHONY : test/main.s
+.PHONY : src/OfflineScurvePlan.s
 
 # target to generate assembly for a file
-test/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/test/main.cpp.s
-.PHONY : test/main.cpp.s
+src/OfflineScurvePlan.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.s
+.PHONY : src/OfflineScurvePlan.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Demo.dir/build.make CMakeFiles/Demo.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -205,12 +205,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Demo"
-	@echo "... src/offline_scurve_plan.o"
-	@echo "... src/offline_scurve_plan.i"
-	@echo "... src/offline_scurve_plan.s"
-	@echo "... test/main.o"
-	@echo "... test/main.i"
-	@echo "... test/main.s"
+	@echo "... src/OfflineScurvePlan.o"
+	@echo "... src/OfflineScurvePlan.i"
+	@echo "... src/OfflineScurvePlan.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

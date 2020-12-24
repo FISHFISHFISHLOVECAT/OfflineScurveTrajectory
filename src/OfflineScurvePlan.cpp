@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <fstream>
+#include <cmath>
 
 //对称S型规划
 #include "OfflineScurvePlan.h"
@@ -317,48 +318,3 @@ bool STypeMotion::Move(int i, double& qi)
     return true;
 }
 
-int main()
-{
-    double q0;
-    double q1;
-    double v0;
-    double v1;
-    double vmax;
-    double amax;
-    double jmax;
-    double cycle = 0.004;
-
-    int N;
-    STypeMotion S;
-    //case 1 Complete S vlim=vmax
- // q0 = 0, q1 = 10, v0 = 1, v1 = 0, vmax = 5, amax = 10, jmax = 30;
-    //case 2 No MP S vlim<vmax 
- //q0 = 0, q1 = 10, v0 = 1, v1 = 0, vmax = 10, amax = 10, jmax = 30;
-    //case 3 No MP S，vlim<vmax, alim<amax
- //q0 = 0, q1 = 10, v0 = 7, v1 = 0, vmax = 10, amax = 10, jmax = 30;
-    //case 4 No AP MP, vlim<vmax
-    q0 = 0, q1 = 10, v0 = 7.5, v1 = 0, vmax = 10, amax = 10, jmax = 30;
-    //case 5 No solution: Too close
- //q0 = 0, q1 = 0.00001, v0 = 7.5, v1 = 0, vmax = 10, amax = 10, jmax = 30;
-    //case 6 No solution: Acc too small
- //q0 = 0, q1 = 10, v0 = 300, v1 = 0, vmax = 10, amax = 10, jmax = 30;
-    S.SetSysMotionPara(-vmax, vmax, -amax, amax, -jmax, jmax);
-    S.SetCycle(cycle);
-    bool plan_ok = S.Plan(q0, q1, v0, v1, N);
-    double qi = 0;
-
-    std::ofstream of("C:/Users/admin/Desktop/result.txt");
-
-    if (plan_ok)
-    {
-        for (int i = 0; i < N; i++)
-        {
-            S.Move(i, qi);
-            of << std::setprecision(16) << qi << std::endl;
-        }
-    }
-    else
-    {
-        std::cout << "Plan Failed" << std::endl;
-    }
-}

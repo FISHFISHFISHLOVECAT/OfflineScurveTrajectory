@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o"
-  "CMakeFiles/Demo.dir/test/main.cpp.o"
+  "CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o"
+  "CMakeFiles/Demo.dir/src/main.cpp.o"
   "Demo"
   "Demo.pdb"
 )

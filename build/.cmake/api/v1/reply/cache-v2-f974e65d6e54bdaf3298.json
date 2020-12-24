@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build"
+			"value" : "/home/junwu/SnapMotion/OfflineScurveTrajectory/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : "2"
 		},
 		{
 			"name" : "CMAKE_COLOR_MAKEFILE",
@@ -119,7 +119,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/usr/local/cmake-3.19.1-Linux-x86_64/bin/cmake"
+			"value" : "/usr/local/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -131,7 +131,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/usr/local/cmake-3.19.1-Linux-x86_64/bin/cpack"
+			"value" : "/usr/local/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -143,7 +143,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/usr/local/cmake-3.19.1-Linux-x86_64/bin/ctest"
+			"value" : "/usr/local/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -155,10 +155,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "CXX compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/g++-5"
 		},
 		{
@@ -283,10 +283,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/gcc-5"
 		},
 		{
@@ -427,7 +427,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/usr/local/cmake-3.19.1-Linux-x86_64/bin/ccmake"
+			"value" : "/usr/local/bin/ccmake"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory"
+			"value" : "/home/junwu/SnapMotion/OfflineScurveTrajectory"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -891,7 +891,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/usr/local/cmake-3.19.1-Linux-x86_64/share/cmake-3.19"
+			"value" : "/usr/local/share/cmake-3.19"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1139,7 +1139,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build"
+			"value" : "/home/junwu/SnapMotion/OfflineScurveTrajectory/build"
 		},
 		{
 			"name" : "ScurvePlan_SOURCE_DIR",
@@ -1151,7 +1151,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory"
+			"value" : "/home/junwu/SnapMotion/OfflineScurveTrajectory"
 		}
 	],
 	"kind" : "cache",

@@ -8,25 +8,25 @@
 		},
 		"paths" : 
 		{
-			"cmake" : "/usr/local/cmake-3.19.1-Linux-x86_64/bin/cmake",
-			"cpack" : "/usr/local/cmake-3.19.1-Linux-x86_64/bin/cpack",
-			"ctest" : "/usr/local/cmake-3.19.1-Linux-x86_64/bin/ctest",
-			"root" : "/usr/local/cmake-3.19.1-Linux-x86_64/share/cmake-3.19"
+			"cmake" : "/usr/local/bin/cmake",
+			"cpack" : "/usr/local/bin/cpack",
+			"ctest" : "/usr/local/bin/ctest",
+			"root" : "/usr/local/share/cmake-3.19"
 		},
 		"version" : 
 		{
 			"isDirty" : false,
 			"major" : 3,
 			"minor" : 19,
-			"patch" : 1,
-			"string" : "3.19.1",
+			"patch" : 2,
+			"string" : "3.19.2",
 			"suffix" : ""
 		}
 	},
 	"objects" : 
 	[
 		{
-			"jsonFile" : "codemodel-v2-a618156ccaf0aec50d77.json",
+			"jsonFile" : "codemodel-v2-49941e2dcc50b5e3d18e.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-88f8652c553bfccec8c8.json",
+			"jsonFile" : "cache-v2-f974e65d6e54bdaf3298.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -64,7 +64,7 @@
 				"responses" : 
 				[
 					{
-						"jsonFile" : "cache-v2-88f8652c553bfccec8c8.json",
+						"jsonFile" : "cache-v2-f974e65d6e54bdaf3298.json",
 						"kind" : "cache",
 						"version" : 
 						{
@@ -73,7 +73,7 @@
 						}
 					},
 					{
-						"jsonFile" : "codemodel-v2-a618156ccaf0aec50d77.json",
+						"jsonFile" : "codemodel-v2-49941e2dcc50b5e3d18e.json",
 						"kind" : "codemodel",
 						"version" : 
 						{

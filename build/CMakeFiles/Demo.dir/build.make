@@ -53,19 +53,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/cmake-3.19.1-Linux-x86_64/bin/cmake
+CMAKE_COMMAND = /usr/local/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/cmake-3.19.1-Linux-x86_64/bin/cmake -E rm -f
+RM = /usr/local/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory"
+CMAKE_SOURCE_DIR = /home/junwu/SnapMotion/OfflineScurveTrajectory
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build"
+CMAKE_BINARY_DIR = /home/junwu/SnapMotion/OfflineScurveTrajectory/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Demo.dir/depend.make
@@ -76,45 +76,45 @@ include CMakeFiles/Demo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Demo.dir/flags.make
 
-CMakeFiles/Demo.dir/test/main.cpp.o: CMakeFiles/Demo.dir/flags.make
-CMakeFiles/Demo.dir/test/main.cpp.o: ../test/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Demo.dir/test/main.cpp.o"
-	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Demo.dir/test/main.cpp.o -c "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/test/main.cpp"
+CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o: CMakeFiles/Demo.dir/flags.make
+CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o: ../src/OfflineScurvePlan.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/junwu/SnapMotion/OfflineScurveTrajectory/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o"
+	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o -c /home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.cpp
 
-CMakeFiles/Demo.dir/test/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Demo.dir/test/main.cpp.i"
-	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/test/main.cpp" > CMakeFiles/Demo.dir/test/main.cpp.i
+CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.i"
+	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.cpp > CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.i
 
-CMakeFiles/Demo.dir/test/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Demo.dir/test/main.cpp.s"
-	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/test/main.cpp" -o CMakeFiles/Demo.dir/test/main.cpp.s
+CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.s"
+	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.cpp -o CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.s
 
-CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o: CMakeFiles/Demo.dir/flags.make
-CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o: ../src/offline_scurve_plan.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o"
-	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o -c "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/src/offline_scurve_plan.cpp"
+CMakeFiles/Demo.dir/src/main.cpp.o: CMakeFiles/Demo.dir/flags.make
+CMakeFiles/Demo.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/junwu/SnapMotion/OfflineScurveTrajectory/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Demo.dir/src/main.cpp.o"
+	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Demo.dir/src/main.cpp.o -c /home/junwu/SnapMotion/OfflineScurveTrajectory/src/main.cpp
 
-CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.i"
-	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/src/offline_scurve_plan.cpp" > CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.i
+CMakeFiles/Demo.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Demo.dir/src/main.cpp.i"
+	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/junwu/SnapMotion/OfflineScurveTrajectory/src/main.cpp > CMakeFiles/Demo.dir/src/main.cpp.i
 
-CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.s"
-	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/src/offline_scurve_plan.cpp" -o CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.s
+CMakeFiles/Demo.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Demo.dir/src/main.cpp.s"
+	/usr/bin/g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/junwu/SnapMotion/OfflineScurveTrajectory/src/main.cpp -o CMakeFiles/Demo.dir/src/main.cpp.s
 
 # Object files for target Demo
 Demo_OBJECTS = \
-"CMakeFiles/Demo.dir/test/main.cpp.o" \
-"CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o"
+"CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o" \
+"CMakeFiles/Demo.dir/src/main.cpp.o"
 
 # External object files for target Demo
 Demo_EXTERNAL_OBJECTS =
 
-Demo: CMakeFiles/Demo.dir/test/main.cpp.o
-Demo: CMakeFiles/Demo.dir/src/offline_scurve_plan.cpp.o
+Demo: CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o
+Demo: CMakeFiles/Demo.dir/src/main.cpp.o
 Demo: CMakeFiles/Demo.dir/build.make
 Demo: CMakeFiles/Demo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Demo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/junwu/SnapMotion/OfflineScurveTrajectory/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Demo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Demo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -127,6 +127,6 @@ CMakeFiles/Demo.dir/clean:
 .PHONY : CMakeFiles/Demo.dir/clean
 
 CMakeFiles/Demo.dir/depend:
-	cd "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build" "/home/junwu/Desktop/Code refactoring/OfflineScurveTrajectory/build/CMakeFiles/Demo.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/junwu/SnapMotion/OfflineScurveTrajectory/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/junwu/SnapMotion/OfflineScurveTrajectory /home/junwu/SnapMotion/OfflineScurveTrajectory /home/junwu/SnapMotion/OfflineScurveTrajectory/build /home/junwu/SnapMotion/OfflineScurveTrajectory/build /home/junwu/SnapMotion/OfflineScurveTrajectory/build/CMakeFiles/Demo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Demo.dir/depend
 
