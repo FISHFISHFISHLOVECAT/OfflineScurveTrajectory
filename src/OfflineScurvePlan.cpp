@@ -23,8 +23,74 @@ void STypeMotion::SetSysMotionPara(double vmin, double vmax, double amin, double
     this->m_jmin = jmin;
     this->m_jmax = jmax;
 }
-
 bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
+{
+    this->m_q0 = q0;
+    this->m_q1 = q1;
+    this->m_v0 = v0;
+    this->m_v1 = v1;
+
+    //考虑位移减少情况，参数转换
+    Convert2OppositeCase();
+
+    //当前参数满足最小位移要求
+    if (ParaMinDisRequirement())
+    {
+        //假设Tv段存在
+        bool TvExist = TvExistTimeParaCal();
+        if (TvExist)
+        {
+            CalRealMotionPara();
+            N = m_N;
+            return true;
+        }
+        double gama = 1;
+        //Tv段不存在
+        double k = 1;
+        while (gama > 0)
+        {
+            if (TvNotExistTimeParaCal(gama))
+            {
+                CalRealMotionPara();
+                N = m_N;
+                return true;
+            }
+            else
+            {
+                std::cout << "Reducing Acc" << std::endl;
+                gama *= (1 - 0.000001 * k);
+            }
+        }
+    }
+    //当前参数不满足最小位移要求
+    else
+    {
+        double gama = 1;
+        //Tv段不存在
+        double k = 1;
+        while (gama > 0)
+        {
+            if (TvNotExistTimeParaCal(gama))
+            {
+                CalRealMotionPara();
+                N = m_N;
+                if (m_isError == -1)
+                    return false;
+                return true;
+            }
+            else
+            {
+                std::cout << "Reducing Acc" << std::endl;
+                gama *= (1 - 0.000001 * k);
+            }
+        }
+        return false;
+    }
+    return false;
+
+}
+
+bool STypeMotion::Plan2(double q0, double q1, double v0, double v1, int& N)
 {
     this->m_q0 = q0;
     this->m_q1 = q1;
@@ -124,13 +190,15 @@ bool STypeMotion::TvExistTimeParaCal()
     return false;
 }
 
+
+
 //Tv段不存在时的时间参数计算
 bool STypeMotion::TvNotExistTimeParaCal(double gama)
 {
     m_amax = gama * m_amax;
     m_Tv = 0;
     m_Tj1 = m_Tj2 = m_amax / m_jmax;
-
+    std::cout<<m_amax<<std::endl;
     double delta = pow(m_amax, 4) / pow(m_jmax, 2) + 2 * (m_v0 * m_v0 + m_v1 * m_v1) + \
         m_amax * (4 * (m_q1 - m_q0) - 2 * (m_amax / m_jmax) * (m_v0 + m_v1));
 
@@ -138,7 +206,10 @@ bool STypeMotion::TvNotExistTimeParaCal(double gama)
     m_Td = (m_amax * m_amax / m_jmax - 2 * m_v1 + sqrt(delta)) / (2 * m_amax);
 
     if (m_Ta >= 2 * m_Tj1 && m_Td >= 2 * m_Tj2)
+     {
+        std::cout<<"匀加速段时间: "<<m_Ta-m_Tj1*2<<std::endl;
         return true;
+     }   
     else
     {
         if (m_Ta < 0)
@@ -176,6 +247,59 @@ bool STypeMotion::TvNotExistTimeParaCal(double gama)
         return false;
     }
 }
+
+//Tv段不存在时的时间参数计算
+// bool STypeMotion::TvNotExistTimeParaCal(double gama)
+// {
+//     m_amax = gama * m_amax;
+//     m_Tv = 0;
+//     m_Tj1 = m_Tj2 = m_amax / m_jmax;
+
+//     double delta = pow(m_amax, 4) / pow(m_jmax, 2) + 2 * (m_v0 * m_v0 + m_v1 * m_v1) + \
+//         m_amax * (4 * (m_q1 - m_q0) - 2 * (m_amax / m_jmax) * (m_v0 + m_v1));
+
+//     m_Ta = (m_amax * m_amax / m_jmax - 2 * m_v0 + sqrt(delta)) / (2 * m_amax);
+//     m_Td = (m_amax * m_amax / m_jmax - 2 * m_v1 + sqrt(delta)) / (2 * m_amax);
+
+//     if (m_Ta >= 2 * m_Tj1 && m_Td >= 2 * m_Tj2)
+//         return true;
+//     else
+//     {
+//         if (m_Ta < 0)
+//         {
+//             m_Ta = 0;
+//             m_Tj1 = 0;
+//             m_Td = 2 * ((m_q1 - m_q0) / (m_v1 + m_v0));
+
+//             if (m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
+//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)) < 0)
+//             {
+//                 m_isError = -1;
+//                 return true;
+//             }
+//             m_Tj2 = (m_jmax * (m_q1 - m_q0) - sqrt(m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
+//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)))) / (m_jmax * (m_v1 + m_v0));
+//             return true;
+//         }
+//         if (m_Td < 0)
+//         {
+//             m_Td = 0;
+//             m_Tj2 = 0;
+//             m_Ta = 2 * ((m_q1 - m_q0) / (m_v1 + m_v0));
+//             if (m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
+//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)) < 0)
+//             {
+//                 m_isError = -1;
+//                 return true;
+//             }
+//             m_Tj1 = (m_jmax * (m_q1 - m_q0) - sqrt(m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
+//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)))) / (m_jmax * (m_v1 + m_v0));
+//             return true;
+//         }
+
+//         return false;
+//     }
+// }
 
 void STypeMotion::SetCycle(double cycle)
 {
@@ -301,6 +425,16 @@ bool STypeMotion::GetQi(double ti, double& qi)
         return false;
     }
     return true;
+}
+
+bool STypeMotion::GetModifiedPara(double &plan_amax,double &plan_amin,double &plan_vel,double &plan_duration)
+{
+    plan_amax=this->m_alima;
+    plan_amin=this->m_alimd;
+
+    plan_vel=m_sign*this->m_vlim;
+
+    plan_duration=this->m_T;
 }
 
 bool STypeMotion::Move(int i, double& qi)

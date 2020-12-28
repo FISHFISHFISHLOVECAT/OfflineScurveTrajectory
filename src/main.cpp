@@ -16,10 +16,14 @@ int main()
 
     int N;
     STypeMotion S;
-    q0 = 50, q1 = 58.3, v0 = 0, v1 = 0, vmax = 200, amax = 10000, jmax = 2000000;
+    q0 = 0, q1 = 10, v0 = 0, v1 = 0, vmax = 300, amax = 3000, jmax = 30000;
     S.SetSysMotionPara(-vmax, vmax, -amax, amax, -jmax, jmax);
     S.SetCycle(cycle);
     bool plan_ok = S.Plan(q0, q1, v0, v1, N);
+    double modi_amax,modi_amin,modi_vel,modi_total_t;
+    //S.GetModifiedPara(modi_amax,modi_amin,modi_vel,modi_total_t);
+    //std::cout<<"modi_amax = "<<modi_amax<<"modi_amin = "<<modi_amin<<"modi_vel = "<<modi_vel<<"modi_total_t = "<<modi_total_t<<std::endl;
+    
     double qi = 0;
 
     std::ofstream of("/mnt/hgfs/Data/result.txt");
@@ -31,7 +35,7 @@ int main()
             S.Move(i, qi);
             of << std::setprecision(15) << qi << std::endl;
         }
-    }
+    } 
     else
     {
         std::cout << "Plan Failed" << std::endl;

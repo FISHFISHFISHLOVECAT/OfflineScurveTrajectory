@@ -3,11 +3,14 @@ class STypeMotion
 public:
     STypeMotion();
     bool Plan(double q0, double q1, double v0, double v1, int& N);
+    bool Plan2(double q0,double q2,double v0,double v1,int &N);
     bool Move(int i, double& qi);
     void SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax);
     void SetCycle(double cycle);
     //显示关键时间节点
     void ShowKeyTime();
+    //计算修调后的实际运行参数
+    bool GetModifiedPara(double &plan_amax,double &plan_amin,double &plan_vel,double &plan_duration);
 
 private:
     //S型规划最低要求
@@ -27,6 +30,8 @@ private:
 
     //获取ti的输出值Qi
     bool GetQi(double ti, double& qi);
+
+
 
     //系统内置参数
     double m_vmin = 0, m_vmax = 0;
