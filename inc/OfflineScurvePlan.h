@@ -3,14 +3,11 @@ class STypeMotion
 public:
     STypeMotion();
     bool Plan(double q0, double q1, double v0, double v1, int& N);
-    bool Plan2(double q0,double q2,double v0,double v1,int &N);
     bool Move(int i, double& qi);
     void SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax);
     void SetCycle(double cycle);
     //显示关键时间节点
     void ShowKeyTime();
-    //计算修调后的实际运行参数
-    bool GetModifiedPara(double &plan_amax,double &plan_amin,double &plan_vel,double &plan_duration);
 
 private:
     //S型规划最低要求
@@ -31,33 +28,25 @@ private:
     //获取ti的输出值Qi
     bool GetQi(double ti, double& qi);
 
-
-
     //系统内置参数
     double m_vmin = 0, m_vmax = 0;
     double m_amin = 0, m_amax = 0;
     double m_jmin = 0, m_jmax = 0;
-    double m_cycle;
+    double m_cycle=0.004;
 
     //用户参数
-    double m_q0;
-    double m_q1;
-    double m_v0;
-    double m_v1;
+    double m_q0=0,m_q1=0;
+    double m_v0=0,m_v1=0;
 
     //根据用户参数调整的系统参数
-    double m_alima = 0;//real acc
-    double m_alimd = 0;//real dec
-    double m_vlima = 0;
-    double m_vlimd = 0;
+    double m_alima=0 ,m_alimd = 0;
+    double m_vlima = 0,m_vlimd = 0;
     double m_vlim = 0;//real_vlim
 
     //规划的时间参数
-    double m_Tj1 = 0;
-    double m_Tj2 = 0;
+    double m_Tj1 = 0,m_Tj2 = 0;
     double m_Tv = 0;
-    double m_Ta = 0;
-    double m_Td = 0;
+    double m_Ta = 0,m_Td = 0;
     double m_T = 0;
 
     //是否为q0>q1

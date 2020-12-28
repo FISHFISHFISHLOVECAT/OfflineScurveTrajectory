@@ -10,8 +10,7 @@
 
 STypeMotion::STypeMotion()
 {
-    this->SetSysMotionPara(-10, 10, -10, 10, -30, 30);
-    this->SetCycle(0.004);
+
 }
 
 void STypeMotion::SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax)
@@ -57,102 +56,12 @@ bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
             }
             else
             {
-                std::cout << "Reducing Acc" << std::endl;
+                //std::cout << "Reducing Acc" << std::endl;
                 gama *= (1 - 0.000001 * k);
             }
         }
     }
-    //当前参数不满足最小位移要求
-    else
-    {
-        double gama = 1;
-        //Tv段不存在
-        double k = 1;
-        while (gama > 0)
-        {
-            if (TvNotExistTimeParaCal(gama))
-            {
-                CalRealMotionPara();
-                N = m_N;
-                if (m_isError == -1)
-                    return false;
-                return true;
-            }
-            else
-            {
-                std::cout << "Reducing Acc" << std::endl;
-                gama *= (1 - 0.000001 * k);
-            }
-        }
-        return false;
-    }
-    return false;
-
-}
-
-bool STypeMotion::Plan2(double q0, double q1, double v0, double v1, int& N)
-{
-    this->m_q0 = q0;
-    this->m_q1 = q1;
-    this->m_v0 = v0;
-    this->m_v1 = v1;
-
-    //考虑位移减少情况，参数转换
-    Convert2OppositeCase();
-
-    //当前参数满足最小位移要求
-    if (ParaMinDisRequirement())
-    {
-        //假设Tv段存在
-        bool TvExist = TvExistTimeParaCal();
-        if (TvExist)
-        {
-            CalRealMotionPara();
-            N = m_N;
-            return true;
-        }
-        double gama = 1;
-        //Tv段不存在
-        double k = 1;
-        while (gama > 0)
-        {
-            if (TvNotExistTimeParaCal(gama))
-            {
-                CalRealMotionPara();
-                N = m_N;
-                return true;
-            }
-            else
-            {
-                std::cout << "Reducing Acc" << std::endl;
-                gama *= (1 - 0.01 * k);
-            }
-        }
-    }
-    //当前参数不满足最小位移要求
-    else
-    {
-        double gama = 1;
-        //Tv段不存在
-        double k = 1;
-        while (gama > 0)
-        {
-            if (TvNotExistTimeParaCal(gama))
-            {
-                CalRealMotionPara();
-                N = m_N;
-                if (m_isError == -1)
-                    return false;
-                return true;
-            }
-            else
-            {
-                std::cout << "Reducing Acc" << std::endl;
-                gama *= (1 - 0.01 * k);
-            }
-        }
-        return false;
-    }
+    
     return false;
 
 }
@@ -198,7 +107,6 @@ bool STypeMotion::TvNotExistTimeParaCal(double gama)
     m_amax = gama * m_amax;
     m_Tv = 0;
     m_Tj1 = m_Tj2 = m_amax / m_jmax;
-    std::cout<<m_amax<<std::endl;
     double delta = pow(m_amax, 4) / pow(m_jmax, 2) + 2 * (m_v0 * m_v0 + m_v1 * m_v1) + \
         m_amax * (4 * (m_q1 - m_q0) - 2 * (m_amax / m_jmax) * (m_v0 + m_v1));
 
@@ -207,7 +115,6 @@ bool STypeMotion::TvNotExistTimeParaCal(double gama)
 
     if (m_Ta >= 2 * m_Tj1 && m_Td >= 2 * m_Tj2)
      {
-        std::cout<<"匀加速段时间: "<<m_Ta-m_Tj1*2<<std::endl;
         return true;
      }   
     else
@@ -248,59 +155,6 @@ bool STypeMotion::TvNotExistTimeParaCal(double gama)
     }
 }
 
-//Tv段不存在时的时间参数计算
-// bool STypeMotion::TvNotExistTimeParaCal(double gama)
-// {
-//     m_amax = gama * m_amax;
-//     m_Tv = 0;
-//     m_Tj1 = m_Tj2 = m_amax / m_jmax;
-
-//     double delta = pow(m_amax, 4) / pow(m_jmax, 2) + 2 * (m_v0 * m_v0 + m_v1 * m_v1) + \
-//         m_amax * (4 * (m_q1 - m_q0) - 2 * (m_amax / m_jmax) * (m_v0 + m_v1));
-
-//     m_Ta = (m_amax * m_amax / m_jmax - 2 * m_v0 + sqrt(delta)) / (2 * m_amax);
-//     m_Td = (m_amax * m_amax / m_jmax - 2 * m_v1 + sqrt(delta)) / (2 * m_amax);
-
-//     if (m_Ta >= 2 * m_Tj1 && m_Td >= 2 * m_Tj2)
-//         return true;
-//     else
-//     {
-//         if (m_Ta < 0)
-//         {
-//             m_Ta = 0;
-//             m_Tj1 = 0;
-//             m_Td = 2 * ((m_q1 - m_q0) / (m_v1 + m_v0));
-
-//             if (m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
-//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)) < 0)
-//             {
-//                 m_isError = -1;
-//                 return true;
-//             }
-//             m_Tj2 = (m_jmax * (m_q1 - m_q0) - sqrt(m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
-//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)))) / (m_jmax * (m_v1 + m_v0));
-//             return true;
-//         }
-//         if (m_Td < 0)
-//         {
-//             m_Td = 0;
-//             m_Tj2 = 0;
-//             m_Ta = 2 * ((m_q1 - m_q0) / (m_v1 + m_v0));
-//             if (m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
-//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)) < 0)
-//             {
-//                 m_isError = -1;
-//                 return true;
-//             }
-//             m_Tj1 = (m_jmax * (m_q1 - m_q0) - sqrt(m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
-//                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)))) / (m_jmax * (m_v1 + m_v0));
-//             return true;
-//         }
-
-//         return false;
-//     }
-// }
-
 void STypeMotion::SetCycle(double cycle)
 {
     this->m_cycle = cycle;
@@ -309,9 +163,11 @@ void STypeMotion::SetCycle(double cycle)
 
 bool STypeMotion::ParaMinDisRequirement()
 {
+    //Tjstart1 尚未达到最大加速度单脉冲持续时间；Tjstar2达到最大加速度单脉冲持续时间
     double Tjstar1 = sqrt(fabs(m_v1 - m_v0) / m_jmax);
     double Tjstar2 = m_amax / m_jmax;
 
+    //选择一个最小的
     double Tjstar = std::min(Tjstar1, Tjstar2);
 
     double minq0q1;
@@ -329,6 +185,7 @@ bool STypeMotion::ParaMinDisRequirement()
         return true;
     }
 
+    std::cout<<"当前系统参数（jmax amax）不能满足用户设置(q0 q1 v0 v1)的要求,解决方法: 提高系统性能或修改用户参数)"<<std::endl;
     return false;
 
 }
@@ -361,26 +218,24 @@ void STypeMotion::CalRealMotionPara()
     this->m_alima = m_jmax * m_Tj1;
     this->m_alimd = -m_jmax * m_Tj2;
 
-    m_vlima = m_v0 + (m_Ta - m_Tj1) * m_alima;
-
-    m_vlimd = m_v1 - (m_Td - m_Tj2) * m_alimd;
-
-    if (fabs(m_vlima) > fabs(m_vlimd))
-        m_vlim = fabs(m_vlima);
-    else
-        m_vlim = fabs(m_vlimd);
+    m_vlim= m_v0 + (m_Ta - m_Tj1) * m_alima;
 
     //总时间的计算
     m_T = m_Ta + m_Td + m_Tv;
 
     m_N = static_cast<int>(m_T / m_cycle + 1);
+    std::cout<<"[Plan Info]:"<<std::endl;
+    std::cout<<"    m_alima = "<<m_alima<<std::endl;
+    std::cout<<"    m_alimd = "<<m_alimd<<std::endl;
+    std::cout<<"    m_vlim = "<<m_sign*m_vlim<<std::endl;
+    ShowKeyTime();
 
 }
 
 
 void STypeMotion::ShowKeyTime()
 {
-    std::cout << "[" << 0 << "," << m_Tj1 << "," << m_Ta - m_Tj1 << "," << \
+    std::cout << "    [" << 0 << "," << m_Tj1 << "," << m_Ta - m_Tj1 << "," << \
         m_Ta << "," << m_Ta + m_Tv << "," << m_T - m_Td + m_Tj2 << "," << \
         m_T << "]" << std::endl;
 }
@@ -425,16 +280,6 @@ bool STypeMotion::GetQi(double ti, double& qi)
         return false;
     }
     return true;
-}
-
-bool STypeMotion::GetModifiedPara(double &plan_amax,double &plan_amin,double &plan_vel,double &plan_duration)
-{
-    plan_amax=this->m_alima;
-    plan_amin=this->m_alimd;
-
-    plan_vel=m_sign*this->m_vlim;
-
-    plan_duration=this->m_T;
 }
 
 bool STypeMotion::Move(int i, double& qi)
