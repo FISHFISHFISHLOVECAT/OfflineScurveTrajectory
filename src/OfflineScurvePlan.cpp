@@ -43,9 +43,9 @@ bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
             N = m_N;
             return true;
         }
-        double gama = 1;
         //Tv段不存在
         double k = 1;
+        double gama = 1;
         while (gama > 0)
         {
             if (TvNotExistTimeParaCal(gama))

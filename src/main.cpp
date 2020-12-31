@@ -1,11 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
+#include <vector>
+#include <cmath>
+#include <chrono>
 #include "OfflineScurvePlan.h"
 
 int main()
 {
-
     STypeMotion S;
 
     //系统参数
@@ -16,12 +19,17 @@ int main()
 
     //用户参数
     int N;        //实际插补点数
-    double q0 = 10, q1 = 0, v0 = 2, v1 = 1;
+    double q0 = 0, q1 = 100, v0 = 1, v1 = 2;
+    auto start=std::chrono::steady_clock::now();
     bool plan_ok = S.Plan(q0, q1, v0, v1, N);
+    auto end=std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed_seconds=end-start;
+    std::cout << "elapsed time: " << elapsed_seconds.count()*1000 << "ms\n";
     
     std::ofstream of("/mnt/hgfs/Data/result.txt");
 
     double qi = 0;//插补点实际位移
+    double qtmp;
     if (plan_ok)
     {
         for (int i = 0; i < N; i++)
@@ -32,6 +40,71 @@ int main()
     } 
     else
     {
-        std::cout << "Plan Failed" << std::endl;
+        std::cout << "Segment1 Plan Failed" << std::endl;
     }
+
+    plan_ok = S.Plan(qi, q0, v1, v0, N);
+    if (plan_ok)
+    {
+        for (int i = 1; i < N; i++)
+        {
+            S.Move(i, qi);
+            of << std::setprecision(15) << qi << std::endl;
+        }
+    } 
+    else
+    {
+        std::cout << "Segment2 Plan Failed" << std::endl;
+    }
+
+
+    plan_ok = S.Plan(qi, q1, v0, v1, N);
+
+    if (plan_ok)
+    {
+        for (int i = 1; i < N; i++)
+        {
+            
+            S.Move(i, qi);
+            of << std::setprecision(15) << qi << std::endl;
+        }
+    } 
+    else
+    {
+        std::cout << "Segment3 Plan Failed" << std::endl;
+    }
+
+    plan_ok = S.Plan(qi, q0, v1, v0, N);
+
+    if (plan_ok)
+    {
+        for (int i = 1; i < N; i++)
+        {
+            
+            S.Move(i, qi);
+            of << std::setprecision(15) << qi << std::endl;
+        }
+    } 
+    else
+    {
+        std::cout << "Segment3 Plan Failed" << std::endl;
+    }
+
+    plan_ok = S.Plan(qi, q1, v0, v1, N);
+
+    if (plan_ok)
+    {
+        for (int i = 1; i < N; i++)
+        {
+            
+            S.Move(i, qi);
+            of << std::setprecision(15) << qi << std::endl;
+        }
+    } 
+    else
+    {
+        std::cout << "Segment3 Plan Failed" << std::endl;
+    }
+
+
 }
