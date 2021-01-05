@@ -297,3 +297,31 @@ bool STypeMotion::Move(int i, double& qi)
     return true;
 }
 
+
+bool STypeMotion::Move(int i,double &qi,double &vi)
+{
+    double ti = m_cycle * i;
+
+    if (ti > m_T)
+        ti = m_T;
+    double previous_qi=qi;
+    if (!GetQi(ti, qi))
+    {
+        return false;
+    }
+
+    qi *= m_sign;
+
+    if(i==0)
+    {
+        vi=m_v0;
+    }    
+    else
+    {
+        vi=(qi-previous_qi)/m_cycle;
+    }
+    
+    return true;
+}
+
+

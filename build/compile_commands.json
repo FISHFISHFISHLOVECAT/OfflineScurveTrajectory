@@ -1,12 +1,12 @@
 [
 {
   "directory": "/home/junwu/SnapMotion/OfflineScurveTrajectory/build",
-  "command": "/usr/bin/g++-5  -I/home/junwu/SnapMotion/OfflineScurveTrajectory/./inc -g -std=gnu++11 -o CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o -c /home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.cpp",
+  "command": "/usr/bin/g++-5  -I/home/junwu/SnapMotion/OfflineScurveTrajectory/./inc  -pthread -g -std=gnu++11 -o CMakeFiles/Demo.dir/src/OfflineScurvePlan.cpp.o -c /home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.cpp",
   "file": "/home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.cpp"
 },
 {
   "directory": "/home/junwu/SnapMotion/OfflineScurveTrajectory/build",
-  "command": "/usr/bin/g++-5  -I/home/junwu/SnapMotion/OfflineScurveTrajectory/./inc -g -std=gnu++11 -o CMakeFiles/Demo.dir/src/main.cpp.o -c /home/junwu/SnapMotion/OfflineScurveTrajectory/src/main.cpp",
+  "command": "/usr/bin/g++-5  -I/home/junwu/SnapMotion/OfflineScurveTrajectory/./inc  -pthread -g -std=gnu++11 -o CMakeFiles/Demo.dir/src/main.cpp.o -c /home/junwu/SnapMotion/OfflineScurveTrajectory/src/main.cpp",
   "file": "/home/junwu/SnapMotion/OfflineScurveTrajectory/src/main.cpp"
 }
 ]

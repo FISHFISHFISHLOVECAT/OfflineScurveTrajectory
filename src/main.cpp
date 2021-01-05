@@ -58,7 +58,7 @@ int main()
     }
 
 
-    plan_ok = S.Plan(qi, q1, v0, v1, N);
+    plan_ok = S.Plan(qi, q1-35, v0, v1, N);
 
     if (plan_ok)
     {
@@ -74,7 +74,7 @@ int main()
         std::cout << "Segment3 Plan Failed" << std::endl;
     }
 
-    plan_ok = S.Plan(qi, q0, v1, v0, N);
+    plan_ok = S.Plan(qi, q0+50, v1, v0, N);
 
     if (plan_ok)
     {
@@ -87,7 +87,7 @@ int main()
     } 
     else
     {
-        std::cout << "Segment3 Plan Failed" << std::endl;
+        std::cout << "Segment4 Plan Failed" << std::endl;
     }
 
     plan_ok = S.Plan(qi, q1, v0, v1, N);
@@ -103,7 +103,7 @@ int main()
     } 
     else
     {
-        std::cout << "Segment3 Plan Failed" << std::endl;
+        std::cout << "Segment5 Plan Failed" << std::endl;
     }
 
 
