@@ -8,12 +8,12 @@
 //对称S型规划
 #include "OfflineScurvePlan.h"
 
-STypeMotion::STypeMotion()
+OfflineScurvePlan::OfflineScurvePlan()
 {
 
 }
 
-void STypeMotion::SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax)
+void OfflineScurvePlan::SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax)
 {
     this->m_vmin = vmin;
     this->m_vmax = vmax;
@@ -22,7 +22,7 @@ void STypeMotion::SetSysMotionPara(double vmin, double vmax, double amin, double
     this->m_jmin = jmin;
     this->m_jmax = jmax;
 }
-bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
+bool OfflineScurvePlan::Plan(double q0, double q1, double v0, double v1, int& N)
 {
     this->m_q0 = q0;
     this->m_q1 = q1;
@@ -67,7 +67,7 @@ bool STypeMotion::Plan(double q0, double q1, double v0, double v1, int& N)
 }
 
 //Tv段存在时的时间参数计算
-bool STypeMotion::TvExistTimeParaCal()
+bool OfflineScurvePlan::TvExistTimeParaCal()
 {
     //假设Tv存在，如果Tv不小于0，假设成立；反之，假设成功
     if ((m_vmax - m_v0) * m_jmax < m_amax * m_amax)
@@ -102,7 +102,7 @@ bool STypeMotion::TvExistTimeParaCal()
 
 
 //Tv段不存在时的时间参数计算
-bool STypeMotion::TvNotExistTimeParaCal(double gama)
+bool OfflineScurvePlan::TvNotExistTimeParaCal(double gama)
 {
     m_amax = gama * m_amax;
     m_Tv = 0;
@@ -155,13 +155,13 @@ bool STypeMotion::TvNotExistTimeParaCal(double gama)
     }
 }
 
-void STypeMotion::SetCycle(double cycle)
+void OfflineScurvePlan::SetCycle(double cycle)
 {
     this->m_cycle = cycle;
 }
 
 
-bool STypeMotion::ParaMinDisRequirement()
+bool OfflineScurvePlan::ParaMinDisRequirement()
 {
     //Tjstart1 尚未达到最大加速度单脉冲持续时间；Tjstar2达到最大加速度单脉冲持续时间
     double Tjstar1 = sqrt(fabs(m_v1 - m_v0) / m_jmax);
@@ -190,7 +190,7 @@ bool STypeMotion::ParaMinDisRequirement()
 
 }
 
-void STypeMotion::Convert2OppositeCase()
+void OfflineScurvePlan::Convert2OppositeCase()
 {
     if (m_q1 > m_q0)
         m_sign = 1;
@@ -213,7 +213,7 @@ void STypeMotion::Convert2OppositeCase()
 
 }
 
-void STypeMotion::CalRealMotionPara()
+void OfflineScurvePlan::CalRealMotionPara()
 {
     this->m_alima = m_jmax * m_Tj1;
     this->m_alimd = -m_jmax * m_Tj2;
@@ -233,14 +233,14 @@ void STypeMotion::CalRealMotionPara()
 }
 
 
-void STypeMotion::ShowKeyTime()
+void OfflineScurvePlan::ShowKeyTime()
 {
     std::cout << "    [" << 0 << "," << m_Tj1 << "," << m_Ta - m_Tj1 << "," << \
         m_Ta << "," << m_Ta + m_Tv << "," << m_T - m_Td + m_Tj2 << "," << \
         m_T << "]" << std::endl;
 }
 
-bool STypeMotion::GetQi(double ti, double& qi)
+bool OfflineScurvePlan::GetQi(double ti, double& qi)
 {
     if (ti >= 0 && ti < m_Tj1)//AP1
     {
@@ -282,7 +282,7 @@ bool STypeMotion::GetQi(double ti, double& qi)
     return true;
 }
 
-bool STypeMotion::Move(int i, double& qi)
+bool OfflineScurvePlan::Move(int i, double& qi)
 {
     double ti = m_cycle * i;
 
@@ -298,7 +298,7 @@ bool STypeMotion::Move(int i, double& qi)
 }
 
 
-bool STypeMotion::Move(int i,double &qi,double &vi)
+bool OfflineScurvePlan::Move(int i,double &qi,double &vi)
 {
     double ti = m_cycle * i;
 

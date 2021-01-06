@@ -9,7 +9,7 @@
 
 int main()
 {
-    STypeMotion S;
+    OfflineScurvePlan S;
 
     //系统参数
     double vmax = 300, amax = 3000, jmax = 30000;
@@ -19,9 +19,9 @@ int main()
 
     //用户参数
     int N;        //实际插补点数
-    double q0 = 0, q1 = 100, v0 = 1, v1 = 2;
+    double q0 = 0, q1 = 12.5, v0 = 0, v1 = 90;
     auto start=std::chrono::steady_clock::now();
-    bool plan_ok = S.Plan(q0, q1, v0, v1, N);
+    bool plan_ok = S.Plan(q0, q1, v0, 90, N);
     auto end=std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds=end-start;
     std::cout << "elapsed time: " << elapsed_seconds.count()*1000 << "ms\n";
@@ -43,7 +43,7 @@ int main()
         std::cout << "Segment1 Plan Failed" << std::endl;
     }
 
-    plan_ok = S.Plan(qi, q0, v1, v0, N);
+    plan_ok = S.Plan(qi, q1+10, 90, 90, N);
     if (plan_ok)
     {
         for (int i = 1; i < N; i++)
@@ -57,14 +57,11 @@ int main()
         std::cout << "Segment2 Plan Failed" << std::endl;
     }
 
-
-    plan_ok = S.Plan(qi, q1-35, v0, v1, N);
-
+    plan_ok = S.Plan(qi, q1+20, 90, 90, N);
     if (plan_ok)
     {
         for (int i = 1; i < N; i++)
         {
-            
             S.Move(i, qi);
             of << std::setprecision(15) << qi << std::endl;
         }
@@ -74,37 +71,56 @@ int main()
         std::cout << "Segment3 Plan Failed" << std::endl;
     }
 
-    plan_ok = S.Plan(qi, q0+50, v1, v0, N);
+   
 
-    if (plan_ok)
-    {
-        for (int i = 1; i < N; i++)
-        {
+
+    // plan_ok = S.Plan(qi, q1, v0, v1, N);
+
+    // if (plan_ok)
+    // {
+    //     for (int i = 1; i < N; i++)
+    //     {
             
-            S.Move(i, qi);
-            of << std::setprecision(15) << qi << std::endl;
-        }
-    } 
-    else
-    {
-        std::cout << "Segment4 Plan Failed" << std::endl;
-    }
+    //         S.Move(i, qi);
+    //         of << std::setprecision(15) << qi << std::endl;
+    //     }
+    // } 
+    // else
+    // {
+    //     std::cout << "Segment3 Plan Failed" << std::endl;
+    // }
 
-    plan_ok = S.Plan(qi, q1, v0, v1, N);
+    // plan_ok = S.Plan(qi, q0+50, v1, v0, N);
 
-    if (plan_ok)
-    {
-        for (int i = 1; i < N; i++)
-        {
+    // if (plan_ok)
+    // {
+    //     for (int i = 1; i < N; i++)
+    //     {
             
-            S.Move(i, qi);
-            of << std::setprecision(15) << qi << std::endl;
-        }
-    } 
-    else
-    {
-        std::cout << "Segment5 Plan Failed" << std::endl;
-    }
+    //         S.Move(i, qi);
+    //         of << std::setprecision(15) << qi << std::endl;
+    //     }
+    // } 
+    // else
+    // {
+    //     std::cout << "Segment4 Plan Failed" << std::endl;
+    // }
+
+    // plan_ok = S.Plan(qi, q1, v0, v1, N);
+
+    // if (plan_ok)
+    // {
+    //     for (int i = 1; i < N; i++)
+    //     {
+            
+    //         S.Move(i, qi);
+    //         of << std::setprecision(15) << qi << std::endl;
+    //     }
+    // } 
+    // else
+    // {
+    //     std::cout << "Segment5 Plan Failed" << std::endl;
+    // }
 
 
 }

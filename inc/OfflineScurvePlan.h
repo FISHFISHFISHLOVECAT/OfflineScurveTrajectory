@@ -1,7 +1,7 @@
-class STypeMotion
+class OfflineScurvePlan
 {
 public:
-    STypeMotion();
+    OfflineScurvePlan();
     bool Plan(double q0, double q1, double v0, double v1, int& N);
     bool Move(int i, double& qi);
     bool Move(int i,double &qi,double &vi);
