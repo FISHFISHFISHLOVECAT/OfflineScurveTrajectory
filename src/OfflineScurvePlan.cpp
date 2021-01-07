@@ -22,6 +22,17 @@ void OfflineScurvePlan::SetSysMotionPara(double vmin, double vmax, double amin, 
     this->m_jmin = jmin;
     this->m_jmax = jmax;
 }
+
+void OfflineScurvePlan::SetSysMotionPara(double vmax,double amax, double jmax)
+{
+    this->m_vmin = -vmax;
+    this->m_vmax = vmax;
+    this->m_amin = -amax;
+    this->m_amax = amax;
+    this->m_jmin = -jmax;
+    this->m_jmax = jmax;
+}
+
 bool OfflineScurvePlan::Plan(double q0, double q1, double v0, double v1, int& N)
 {
     this->m_q0 = q0;
@@ -64,6 +75,47 @@ bool OfflineScurvePlan::Plan(double q0, double q1, double v0, double v1, int& N)
     
     return false;
 
+}
+
+bool OfflineScurvePlan::Plan(double q0, double q1, double v0, double v1)
+{
+    this->m_q0 = q0;
+    this->m_q1 = q1;
+    this->m_v0 = v0;
+    this->m_v1 = v1;
+
+    //考虑位移减少情况，参数转换
+    Convert2OppositeCase();
+
+    //当前参数满足最小位移要求
+    if (ParaMinDisRequirement())
+    {
+        //假设Tv段存在
+        bool TvExist = TvExistTimeParaCal();
+        if (TvExist)
+        {
+            CalRealMotionPara();
+            return true;
+        }
+        //Tv段不存在
+        double k = 1;
+        double gama = 1;
+        while (gama > 0)
+        {
+            if (TvNotExistTimeParaCal(gama))
+            {
+                CalRealMotionPara();
+                return true;
+            }
+            else
+            {
+                //std::cout << "Reducing Acc" << std::endl;
+                gama *= (1 - 0.000001 * k);
+            }
+        }
+    }
+    
+    return false;
 }
 
 //Tv段存在时的时间参数计算

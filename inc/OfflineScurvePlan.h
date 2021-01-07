@@ -2,15 +2,25 @@ class OfflineScurvePlan
 {
 public:
     OfflineScurvePlan();
-    bool Plan(double q0, double q1, double v0, double v1, int& N);
+    bool Plan(double q0, double q1, double v0, double v1);
     bool Move(int i, double& qi);
     bool Move(int i,double &qi,double &vi);
-    void SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax);
+    void SetSysMotionPara(double vmax,double amax, double jmax);
+
+    int size(){return m_N;}
+
     void SetCycle(double cycle);
+
+
+
+private:
     //显示关键时间节点
     void ShowKeyTime();
 
-private:
+    bool Plan(double q0, double q1, double v0, double v1, int& N);
+
+    void SetSysMotionPara(double vmin, double vmax, double amin, double amax, double jmin, double jmax);
+
     //S型规划最低要求
     bool ParaMinDisRequirement();
 

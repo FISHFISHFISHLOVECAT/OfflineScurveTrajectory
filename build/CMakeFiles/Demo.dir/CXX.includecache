@@ -8,22 +8,6 @@
 
 ../inc/OfflineScurvePlan.h
 
-/home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.cpp
-iostream
--
-vector
--
-algorithm
--
-iomanip
--
-fstream
--
-cmath
--
-OfflineScurvePlan.h
-/home/junwu/SnapMotion/OfflineScurveTrajectory/src/OfflineScurvePlan.h
-
 /home/junwu/SnapMotion/OfflineScurveTrajectory/src/main.cpp
 iostream
 -
