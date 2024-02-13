@@ -198,7 +198,7 @@ bool OfflineScurvePlan::TvNotExistTimeParaCal(double gama)
                 m_isError = -1;
                 return true;
             }
-            m_Tj1 = (m_jmax * (m_q1 - m_q0) - sqrt(m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) + \
+            m_Tj1 = (m_jmax * (m_q1 - m_q0) - sqrt(m_jmax * (m_jmax * pow(m_q1 - m_q0, 2) - \
                 pow(m_v1 + m_v0, 2) * (m_v1 - m_v0)))) / (m_jmax * (m_v1 + m_v0));
             return true;
         }
@@ -229,7 +229,7 @@ bool OfflineScurvePlan::ParaMinDisRequirement()
     }
     else
     {
-        minq0q1 = 0.5 * (m_v0 + m_v1) * (Tjstar + fabs(m_v1 - m_v0) * m_amax);
+        minq0q1 = 0.5 * (m_v0 + m_v1) * (Tjstar + fabs(m_v1 - m_v0) / m_amax);
     }
 
     if (m_q1 - m_q0 > minq0q1)

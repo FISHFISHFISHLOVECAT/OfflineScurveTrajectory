@@ -24,7 +24,7 @@ int main()
     std::chrono::duration<double> elapsed_seconds=end-start;
     std::cout << "elapsed time: " << elapsed_seconds.count()*1000 << "ms\n";
     
-    std::ofstream of("/mnt/hgfs/Data/result.txt");
+    std::ofstream of("../result.txt");
 
     double qi = 0;//插补点实际位移
     double qtmp;
